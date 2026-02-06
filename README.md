@@ -4,7 +4,7 @@ This repository contains a fine‑tuned point cloud completion model designed sp
 
 The implementation is based on the Morphing and Sampling Network (MSN) — a learning‑based dense point cloud completion framework from the original repository: https://github.com/Colin97/MSN-Point-Cloud-Completion/tree/master
 
-🔍 Overview
+## 🔍 Overview
 
 Most real‑world 3D scanning systems (e.g., depth sensors or LiDAR) produce incomplete point clouds due to occlusion, limited viewpoints, or sensor noise. Point cloud completion tackles this by generating a dense and complete 3D shape from partial observations.
 
@@ -16,7 +16,7 @@ Given a partial scan of a human body, the model predicts a complete, high‑qual
 
 The original MSN method preserves known structures and generates dense, uniformly distributed point clouds using a morphing‑and‑sampling strategy.
 
-🚀 Features
+## 🚀 Features
 
 Fine‑tuned for human body shapes
 
@@ -36,7 +36,7 @@ Produces dense and evenly distributed output point clouds
 ├── train.py
 └── utils.py
 
-🧠 Setup & Dependencies
+## 🧠 Setup & Dependencies
 
 Install Python dependencies:
 
@@ -45,13 +45,13 @@ git clone https://github.com/yourusername/human‑body‑pc‑completion.git
 cd human‑body‑pc‑completion
 ```
 
-# Create and activate a virtual environment
+## Create and activate a virtual environment
 ```bash
 python3 ‑m venv venv
 source venv/bin/activate
 ```
 
-# Install requirements
+## Install requirements
 ```bash
 pip install ‑r requirements.txt
 ```
@@ -66,12 +66,14 @@ Open3D (for visualization)
 
 Optional: CUDA support for GPU acceleration
 
-📦 Using the Model
+## 📦 Using the Model
 1. Prepare Data
 
 Ensure files are in .ply, .xyz, or supported point cloud format.
 
 2. Inference (Completion)
+
+Download the weights at: https://drive.google.com/file/d/1FVso6CyGykl2pQbWLBvpL0wOG61xStcO/view?usp=sharing
 
 ```bash
 python halfpcd_to_completepcd.py \
@@ -97,7 +99,7 @@ python train.py \
 
 Adjust parameters in the script (learning rate, batch size, data augmentations) as needed.
 
-📊 Evaluation
+## 📊 Evaluation
 
 Use standard metrics such as:
 
@@ -106,7 +108,3 @@ Chamfer Distance (CD)
 Earth Mover’s Distance (EMD)
 
 These help quantify the similarity between the predicted and ground truth point clouds.
-
-🧠 Acknowledgements
-
-This project leverages the MSN framework for dense point cloud completion, adapting it to the domain of human body reconstruction.

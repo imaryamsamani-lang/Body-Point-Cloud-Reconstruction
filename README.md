@@ -26,7 +26,7 @@ Works with arbitrary incomplete inputs
 
 Produces dense and evenly distributed output point clouds
 
-📁 Repository Structure
+## 📁 Repository Structure
 ```bash
 ├── MDS/
 ├── expansion_penalty/

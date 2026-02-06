@@ -1,8 +1,8 @@
-Human Body Point Cloud Completion
+## Human Body Point Cloud Completion
 
 This repository contains a fine‑tuned point cloud completion model designed specifically for incomplete human body point clouds. Given an incomplete 3D point cloud as input, the model reconstructs and outputs a complete point cloud.
 
-The implementation is based on the Morphing and Sampling Network (MSN) — a learning‑based dense point cloud completion framework from the original repository https://github.com/Colin97/MSN-Point-Cloud-Completion/tree/master
+The implementation is based on the Morphing and Sampling Network (MSN) — a learning‑based dense point cloud completion framework from the original repository: https://github.com/Colin97/MSN-Point-Cloud-Completion/tree/master
 
 🔍 Overview
 
@@ -27,6 +27,14 @@ Works with arbitrary incomplete inputs
 Produces dense and evenly distributed output point clouds
 
 📁 Repository Structure
+├── MDS/
+├── expansion_penalty/
+├── README.md
+├── dataset.py
+├── halfpcd_to_completepcd.py
+├── model.py
+├── train.py
+└── utils.py
 
 🧠 Setup & Dependencies
 
@@ -65,6 +73,13 @@ Ensure files are in .ply, .xyz, or supported point cloud format.
 
 2. Inference (Completion)
 
+```bash
+python halfpcd_to_completepcd.py \
+    --model_path weights/halfpcd_to_completepcd.pth \
+    --input_dir data/partial_pointclouds \
+    --output_dir data/completed_pointclouds
+```
+
 Run the validation/completion script:
 
 The script will load the fine‑tuned model and generate complete point clouds under outputs/completion_results.
@@ -72,6 +87,13 @@ The script will load the fine‑tuned model and generate complete point clouds u
 3. Training / Fine‑Tuning (Optional)
 
 To further fine‑tune on new human body datasets:
+```bash
+python train.py \
+    --data_dir data/human_body \
+    --save_dir models/ \
+    --epochs 100 \
+    --batch_size 16
+```
 
 Adjust parameters in the script (learning rate, batch size, data augmentations) as needed.
 
@@ -84,9 +106,6 @@ Chamfer Distance (CD)
 Earth Mover’s Distance (EMD)
 
 These help quantify the similarity between the predicted and ground truth point clouds.
-
-
-Source code: https://github.com/Colin97/MSN‑Point‑Cloud‑Completion
 
 🧠 Acknowledgements
 

@@ -42,6 +42,12 @@ Produces dense and evenly distributed output point clouds
 
 Install Python dependencies:
 
+Pytorch 1.2.0
+CUDA 10.0
+Python 3.7
+Visdom
+Open3D
+
 ```bash
 git clone https://github.com/yourusername/human‑body‑pc‑completion.git
 cd human‑body‑pc‑completion
@@ -51,16 +57,6 @@ cd human‑body‑pc‑completion
 ```bash
 pip install ‑r requirements.txt
 ```
-
-Make sure you have:
-
-Python 3.7+
-
-PyTorch (compatible with your GPU)
-
-Open3D (for visualization)
-
-Optional: CUDA support for GPU acceleration
 
 ## 📦 Using the Model
 1. Prepare Data
@@ -90,15 +86,9 @@ python train.py
 
 Adjust parameters in the script (learning rate, batch size, data augmentations) as needed.
 
-## 📊 Resuts and Evaluation
+## 📊 Sample Outputs
 
 Sample outputs:
 ![Diagram](results/sample.png)
 
-Use standard metrics such as:
 
-Chamfer Distance (CD)
-
-Earth Mover’s Distance (EMD)
-
-These help quantify the similarity between the predicted and ground truth point clouds.

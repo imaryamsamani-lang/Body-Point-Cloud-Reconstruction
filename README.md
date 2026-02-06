@@ -53,7 +53,6 @@ git clone https://github.com/yourusername/human‑body‑pc‑completion.git
 cd human‑body‑pc‑completion
 ```
 
-## Install requirements
 ```bash
 pip install ‑r requirements.txt
 ```

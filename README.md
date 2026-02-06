@@ -42,10 +42,16 @@ Produces dense and evenly distributed output point clouds
 
 Install Python dependencies:
 
+Make sure you have:
+
 Pytorch 1.2.0
+
 CUDA 10.0
+
 Python 3.7
+
 Visdom
+
 Open3D
 
 ```bash

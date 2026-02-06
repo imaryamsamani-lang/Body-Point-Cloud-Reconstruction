@@ -14,10 +14,10 @@ def WritingDataToPly( FilePath , PointCloud):
 class ShapeNet(data.Dataset): 
     def __init__(self, train = True, npoints = 8192):
         if train:
-            self.data = os.listdir(r'Data\datasets\main_models\train')[2000:2500]
+            self.data = os.listdir('data/train')[2000:2500]
             self.tot = 'train/'
         else:
-            self.data = os.listdir(r'Data\datasets\main_models\test')
+            self.data = os.listdir('data/test')
             self.tot = 'test/'
 
         self.npoints = npoints
@@ -115,7 +115,7 @@ class ShapeNet(data.Dataset):
     def __getitem__(self, index):
         model_id = self.data[index].split('.')[0]
 
-        complete, main = self.read_pcd(r'Data\datasets\Half_madels/' + self.tot + model_id + '.ply')
+        complete, main = self.read_pcd('data/partial/' + self.tot + model_id + '.ply')
         partial = self.make_data(main, self.k, random.uniform(5, 8), random.uniform(-10, 10), 0.005)
         #complete, main = self.read_pcd(r'Data\datasets\main_models/' + self.tot + model_id + '.ply')
 

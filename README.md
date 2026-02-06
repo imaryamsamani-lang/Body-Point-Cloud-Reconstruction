@@ -65,6 +65,8 @@ Optional: CUDA support for GPU acceleration
 ## 📦 Using the Model
 1. Prepare Data
 
+Store the main point clouds in "data/main" and partial point clouds in "data/partial"
+
 Ensure files are in .ply, .xyz, or supported point cloud format.
 
 2. Inference (Completion)
@@ -72,10 +74,7 @@ Ensure files are in .ply, .xyz, or supported point cloud format.
 Download the weights at: https://drive.google.com/file/d/1FVso6CyGykl2pQbWLBvpL0wOG61xStcO/view?usp=sharing
 
 ```bash
-python halfpcd_to_completepcd.py \
-    --model_path weights/halfpcd_to_completepcd.pth \
-    --input_dir data/partial_pointclouds \
-    --output_dir data/completed_pointclouds
+python halfpcd_to_completepcd.py 
 ```
 
 Run the validation/completion script:
@@ -86,16 +85,15 @@ The script will load the fine‑tuned model and generate complete point clouds u
 
 To further fine‑tune on new human body datasets:
 ```bash
-python train.py \
-    --data_dir data/human_body \
-    --save_dir models/ \
-    --epochs 100 \
-    --batch_size 16
+python train.py 
 ```
 
 Adjust parameters in the script (learning rate, batch size, data augmentations) as needed.
 
-## 📊 Evaluation
+## 📊 Resuts and Evaluation
+
+Sample outputs:
+![Diagram](results/sample.png)
 
 Use standard metrics such as:
 

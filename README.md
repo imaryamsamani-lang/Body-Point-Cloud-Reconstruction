@@ -55,7 +55,7 @@ Visdom
 Open3D
 
 ```bash
-git clone https://github.com/yourusername/human‑body‑pc‑completion.git
+git clone https://github.com/imaryamsamani-lang/Body-Point-Cloud-Reconstruction.git
 cd human‑body‑pc‑completion
 ```
 

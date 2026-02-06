@@ -72,7 +72,7 @@ Ensure files are in .ply, .xyz, or supported point cloud format.
 
 2. Inference (Completion)
 
-Download the weights at: https://drive.google.com/file/d/1FVso6CyGykl2pQbWLBvpL0wOG61xStcO/view?usp=sharing
+Download the weights at: [halfpcd_to_completepcd.pth](https://drive.google.com/file/d/1FVso6CyGykl2pQbWLBvpL0wOG61xStcO/view?usp=sharing)
 
 ```bash
 python halfpcd_to_completepcd.py 

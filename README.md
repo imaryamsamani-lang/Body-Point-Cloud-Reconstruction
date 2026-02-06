@@ -27,6 +27,7 @@ Works with arbitrary incomplete inputs
 Produces dense and evenly distributed output point clouds
 
 📁 Repository Structure
+```bash
 ├── MDS/
 ├── expansion_penalty/
 ├── README.md
@@ -35,6 +36,7 @@ Produces dense and evenly distributed output point clouds
 ├── model.py
 ├── train.py
 └── utils.py
+```
 
 ## 🧠 Setup & Dependencies
 

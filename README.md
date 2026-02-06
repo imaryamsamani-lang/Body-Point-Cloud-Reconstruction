@@ -2,7 +2,7 @@
 
 This repository is a fine‑tuned point cloud completion model designed specifically for reconstructing human body point clouds. Given an incomplete 3D point cloud as input, the model generates and outputs a complete point cloud.
 
-The implementation is based on the Morphing and Sampling Network (MSN) — a learning‑based dense point cloud completion framework from the original repository: https://github.com/Colin97/MSN-Point-Cloud-Completion/tree/master
+The implementation is based on the Morphing and Sampling Network (MSN) — a learning‑based dense point cloud completion framework from the original repository: [MSN-Point-Cloud-Completion](https://github.com/Colin97/MSN-Point-Cloud-Completion/tree/master)
 
 ## 🔍 Overview
 

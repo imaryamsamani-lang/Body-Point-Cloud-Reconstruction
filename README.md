@@ -57,33 +57,41 @@ pip install -r requirements.txt
 ## Usage
 
 ### Data Preparation
+
 Organize your data with the following structure:
 
 Store the main point clouds in "data/main" and partial point clouds in "data/partial"
 
 ```text
-data/
-├── main/          # Complete point clouds (ground truth)
-└── partial/       # Corresponding partial point clouds
+
+├── data/
+│   ├── train/
+│   │   ├── main/          # Ground-truth complete human body point clouds
+│   │   └── partial/       # Frontal scans used as input
+│   └── test/
+│       ├── main/
+│       └── partial/
+
 ```
 
 Supported formats: .ply, .xyz, .npy, .pcd
 
 ### Model Weights
+
 Download pretrained weights for human body completion:  [halfpcd_to_completepcd.pth](https://drive.google.com/file/d/1FVso6CyGykl2pQbWLBvpL0wOG61xStcO/view?usp=sharing)
 
 Place the downloaded file in the project root directory.
 
-### Inference
-Generate complete point clouds from partial inputs:
+### Visualize
+
+Visualize complete the reconstructed point clouds:
 
 ```bash
 python halfpcd_to_completepcd.py
 ```
 
-Outputs will be saved to outputs/completion_results/ with corresponding filename identifiers.
-
 ### Training and Fine-tuning
+
 To train on new datasets or fine-tune the model:
 
 ```bash

@@ -32,8 +32,8 @@ for i in files:
 
         partial = torch.zeros((1, 5000, 3), device='cuda')
         
-        main = o3d.io.read_point_cloud('data/main/' + i.split('\\')[-1].split('.')[0] + '.ply')  
-        pcd = o3d.io.read_point_cloud('data/partial/' + i.split('\\')[-1].split('.')[0] + '.ply')
+        main = o3d.io.read_point_cloud('data/test/main/' + i.split('\\')[-1].split('.')[0] + '.ply')  
+        pcd = o3d.io.read_point_cloud('data/test/partial/' + i.split('\\')[-1].split('.')[0] + '.ply')
 
         partial[0, :, :] = torch.from_numpy(resample_pcd(np.array(pcd.points), 5000))
         _, output2, _ = network(partial.transpose(2,1).contiguous())
@@ -45,5 +45,6 @@ for i in files:
 
         p2.paint_uniform_color([1, 0, 0])
         main.paint_uniform_color([0, 0, 0])
+
 
         o3d.visualization.draw_geometries([main, p2])

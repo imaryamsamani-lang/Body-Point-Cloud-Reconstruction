@@ -4,9 +4,7 @@ A deep model for reconstructing complete human body point clouds from partial 3D
 
 ## Overview
 
-3D scanning systems such as depth sensors and LiDAR often produce incomplete point clouds due to occlusion, limited viewpoints, and sensor noise. This repository provides a specialized solution for human body completion, generating dense, high-quality reconstructions from partial inputs. The model preserves existing structural details while generating plausible completions for missing regions.
-
-The core methodology builds upon the Morphing and Sampling Network (MSN) framework from the original work [MSN-Point-Cloud-Completion](https://github.com/Colin97/MSN-Point-Cloud-Completion/tree/master). Our adaptation focuses on human body shapes, with modifications to architecture and training protocols optimized for anatomical structures.
+The proposed method builds upon the Morphing and Sampling Network (MSN) framework introduced in [MSN-Point-Cloud-Completion](https://github.com/Colin97/MSN-Point-Cloud-Completion/tree/master): Point Cloud Completion. We adapt the architecture and training strategy specifically for human body reconstruction, emphasizing anatomical consistency and front-to-back shape inference rather than generic object completion. The resulting model generates dense, coherent full-body point clouds suitable for downstream applications such as avatar creation, virtual try-on, and human shape analysis.
 
 ## Key Features
 

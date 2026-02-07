@@ -14,7 +14,7 @@ def WritingDataToPly( FilePath , PointCloud):
 class ShapeNet(data.Dataset): 
     def __init__(self, train = True, npoints = 8192):
         if train:
-            self.data = os.listdir('data/train')[2000:2500]
+            self.data = os.listdir('data/train')
             self.tot = 'train/'
         else:
             self.data = os.listdir('data/test')
@@ -30,23 +30,8 @@ class ShapeNet(data.Dataset):
 
     def make_data(self, pcd_main, k, j, angle, noise):
 
-        p = []
-        pcd1 = o3d.geometry.PointCloud()
-        pcd1.points = o3d.utility.Vector3dVector(np.array([point for point in np.array(pcd_main.points) if (point[2] < k/5 + k/j)]))
-        p.append(pcd1)
-        pcd2 = o3d.geometry.PointCloud()
-        pcd2.points = o3d.utility.Vector3dVector(np.array([point for point in np.array(pcd_main.points) if (point[2] > k/5 - k/j) & (point[2] < 2*k/5 + k/j)]))
-        p.append(pcd2)
-        pcd3 = o3d.geometry.PointCloud()
-        pcd3.points = o3d.utility.Vector3dVector(np.array([point for point in np.array(pcd_main.points) if (point[2] > 2*k/5 - k/j) & (point[2] < 3*k/5 + k/j)]))
-        p.append(pcd3)
-        pcd4 = o3d.geometry.PointCloud()
-        pcd4.points = o3d.utility.Vector3dVector(np.array([point for point in np.array(pcd_main.points) if (point[2] > 3*k/5 - k/j) & (point[2] < 4*k/5 + k/j)]))
-        p.append(pcd4)
-        pcd5 = o3d.geometry.PointCloud()
-        pcd5.points = o3d.utility.Vector3dVector(np.array([point for point in np.array(pcd_main.points) if (point[2] > 4 * k/5 - k/j)]) if np.any([point for point in np.array(pcd_main.points) if (point[2] > 4 * k/5 - k/j)]) else np.empty((0, 3)))
-        p.append(pcd5)
-
+        pcd = o3d.geometry.PointCloud()
+        pcd.points = o3d.utility.Vector3dVector(np.array([point for point in np.array(pcd_main.points)))
 
         # Convert angle to radians
         angle_radians = np.deg2rad(angle)
@@ -56,41 +41,19 @@ class ShapeNet(data.Dataset):
                                     [0, 1, 0],
                                     [-np.sin(angle_radians), 0, np.cos(angle_radians)]])
         
-        point_clouds = []
-        
-        if len(np.array(p[4].points))>0:
-          counter = 5
-          
-        else:
-          counter = 4
-
-        for s in range(counter):
-            points = np.array(p[s].points)
-            min_z = np.min(points[:, 2])
-            points[:, 2] -= min_z
-            min_y = np.mean(points[:, 1])
-            points[:, 1] -= min_y
-            min_x = np.mean(points[:, 0])
-            points[:, 0] -= min_x
-            # WritingDataToPly(f'{s}.ply', np.array(points))
-
-            combined_points = self.add_noise_to_points(points, noise)
-            p[s].points = o3d.utility.Vector3dVector(combined_points)
-            # WritingDataToPly(f'{s}N.ply', np.array(p[s].points))
-
-            p[s] = p[s].rotate(rotation_matrix, center=(0, 0, 0))
-            # WritingDataToPly(f'{s}T.ply', np.array(p[s].points))
-
-            p[s] = self.resample_pcd(torch.from_numpy(np.array(p[s].points)).float(), 5000)
-            # WritingDataToPly(f'{s}R.ply', np.array(p[s]))
-
+        points = np.array(pcd.points)
             
-            point_clouds.append(p[s])
+        points = self.add_noise_to_points(points, noise)
+        
+        p.points = o3d.utility.Vector3dVector(points)
+        
+        p = p.rotate(rotation_matrix, center=(0, 0, 0))
 
-        total_points = torch.cat(point_clouds, dim=0)
+        p = self.resample_pcd(torch.from_numpy(np.array(p.points)).float(), 5000)
 
         c = o3d.geometry.PointCloud()
-        c.points = o3d.utility.Vector3dVector(total_points)
+        
+        c.points = o3d.utility.Vector3dVector(p)
 
         return torch.from_numpy(np.array(c.points)).float()
 
@@ -115,9 +78,8 @@ class ShapeNet(data.Dataset):
     def __getitem__(self, index):
         model_id = self.data[index].split('.')[0]
 
-        complete, main = self.read_pcd('data/partial/' + self.tot + model_id + '.ply')
+        complete, main = self.read_pcd('data/train/main/' + self.tot + model_id + '.ply')
         partial = self.make_data(main, self.k, random.uniform(5, 8), random.uniform(-10, 10), 0.005)
-        #complete, main = self.read_pcd(r'Data\datasets\main_models/' + self.tot + model_id + '.ply')
 
         return model_id, self.resample_pcd(partial, 5000), self.resample_pcd(complete, self.npoints)
 

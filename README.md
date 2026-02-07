@@ -1,6 +1,6 @@
 ## Human Body Point Cloud Completion
 
-A deep learning model for reconstructing complete human body point clouds from partial 3D scans. This implementation fine-tunes the Morphing and Sampling Network (MSN) architecture specifically for human body reconstruction, addressing occlusion and incomplete scanning challenges common in 3D acquisition systems.
+A deep model for reconstructing complete human body point clouds from partial 3D scans. This implementation fine-tunes the Morphing and Sampling Network (MSN) architecture specifically for human body reconstruction, addressing occlusion and incomplete scanning challenges common in 3D acquisition systems.
 
 ## Overview
 

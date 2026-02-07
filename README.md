@@ -87,7 +87,7 @@ Place the downloaded file in the project root directory.
 Visualize complete the reconstructed point clouds:
 
 ```bash
-python halfpcd_to_completepcd.py
+python visualize.py
 ```
 
 ### Training and Fine-tuning

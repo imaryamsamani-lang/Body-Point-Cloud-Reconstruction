@@ -24,14 +24,15 @@ Preservation of existing structure – Maintains accurate regions while completi
 
 ### Repository Structure
 ```bash
-├── MDS/                    # Multidimensional scaling utilities
-├── expansion_penalty/      # Loss components for point distribution
-├── dataset.py              # Data loading and preprocessing
-├── model.py                # MSN architecture implementation
-├── train.py                # Training and fine-tuning script
+├── MDS/                       # Multidimensional scaling utilities
+├── expansion_penalty/         # Loss components for point distribution
+├── results/                   # Output samples
+├── dataset.py                 # Data loading and preprocessing
+├── model.py                   # MSN architecture implementation
+├── train.py                   # Training and fine-tuning script
 ├── halfpcd_to_completepcd.py  # Inference pipeline
-├── utils.py                # Helper functions and utilities
-└── requirements.txt        # Python dependencies
+├── utils.py                   # Helper functions and utilities
+└── requirements.txt           # Python dependencies
 ```
 
 ### Prerequisites

@@ -26,12 +26,14 @@ Preservation of existing structure – Maintains accurate regions while completi
 ```bash
 ├── MDS/                       # Multidimensional scaling utilities
 ├── expansion_penalty/         # Loss components for point distribution
+├── emd/                       #EMD implementation for point cloud comparison
 ├── results/                   # Output samples
 ├── dataset.py                 # Data loading and preprocessing
 ├── model.py                   # MSN architecture implementation
 ├── train.py                   # Training and fine-tuning script
 ├── visualize.py               # Visualize outputs
 ├── utils.py                   # Helper functions and utilities
+├── val.py                     # Inference and evaluation of the model
 └── requirements.txt           # Python dependencies
 ```
 
@@ -82,6 +84,14 @@ Download pretrained weights for human body completion:  [halfpcd_to_completepcd.
 
 Place the downloaded file in the project root directory.
 
+### Evaluation
+
+Evaluate the model using the following script:
+
+```bash
+python val.py
+```
+
 ### Visualize
 
 Visualize complete the reconstructed point clouds:
@@ -122,9 +132,9 @@ This dual process ensures both structural accuracy and point distribution qualit
 
 ### Training Configuration
 
-Input: 2,048 points (partial point cloud)
+Number of points: 5000
 
-Output: 16,384 points (completed point cloud)
+Number of primitives: 16
 
 Loss: Combined Chamfer distance and expansion penalty
 

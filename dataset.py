@@ -26,36 +26,7 @@ class ShapeNet(data.Dataset):
  
     def read_pcd(self, filename):
         pcd = o3d.io.read_point_cloud(filename)
-        return torch.from_numpy(np.array(pcd.points)).float(), pcd
-
-    def make_data(self, pcd_main, k, j, angle, noise):
-
-        pcd = o3d.geometry.PointCloud()
-        pcd.points = o3d.utility.Vector3dVector(np.array([point for point in np.array(pcd_main.points)))
-
-        # Convert angle to radians
-        angle_radians = np.deg2rad(angle)
-
-        # Rotation matrix around the z-axis
-        rotation_matrix = np.array([[np.cos(angle_radians), 0, np.sin(angle_radians)],
-                                    [0, 1, 0],
-                                    [-np.sin(angle_radians), 0, np.cos(angle_radians)]])
-        
-        points = np.array(pcd.points)
-            
-        points = self.add_noise_to_points(points, noise)
-        
-        p.points = o3d.utility.Vector3dVector(points)
-        
-        p = p.rotate(rotation_matrix, center=(0, 0, 0))
-
-        p = self.resample_pcd(torch.from_numpy(np.array(p.points)).float(), 5000)
-
-        c = o3d.geometry.PointCloud()
-        
-        c.points = o3d.utility.Vector3dVector(p)
-
-        return torch.from_numpy(np.array(c.points)).float()
+        return torch.from_numpy(np.array(pcd.points)).float()
 
     def resample_pcd(self, pcd, n):
         idx = np.random.permutation(pcd.shape[0])
@@ -78,11 +49,11 @@ class ShapeNet(data.Dataset):
     def __getitem__(self, index):
         model_id = self.data[index].split('.')[0]
 
-        complete, main = self.read_pcd('data/train/main/' + self.tot + model_id + '.ply')
-        partial = self.make_data(main, self.k, random.uniform(5, 8), random.uniform(-10, 10), 0.005)
+        complete = self.read_pcd('data/train/main/' + self.tot + model_id + '.ply')
+        partial = self.read_pcd('data/train/partial/' + self.tot + model_id + '.ply')
 
         return model_id, self.resample_pcd(partial, 5000), self.resample_pcd(complete, self.npoints)
 
     def __len__(self):
-
+        
         return self.len

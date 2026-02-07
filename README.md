@@ -30,7 +30,7 @@ Preservation of existing structure – Maintains accurate regions while completi
 ├── dataset.py                 # Data loading and preprocessing
 ├── model.py                   # MSN architecture implementation
 ├── train.py                   # Training and fine-tuning script
-├── halfpcd_to_completepcd.py  # Inference pipeline
+├── visualize.py               # Visualize outputs
 ├── utils.py                   # Helper functions and utilities
 └── requirements.txt           # Python dependencies
 ```

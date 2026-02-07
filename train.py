@@ -12,7 +12,6 @@ import os
 import json
 import time, datetime
 from time import time
-sys.path.append("./emd/")
 import emd_module as emd
 import time
 
@@ -125,8 +124,7 @@ def main():
         # if (epoch+1)%5==0:
         #     # Save model weights
         #     print('Saving net...')
-        torch.save(network.module.model.state_dict(), 'end3.pth')#f'weights/5shots_to_completepcd{epoch+1}.pth')
-        torch.save(network.module.model.state_dict(), r'Z:\Samani\end3.pth')
+        torch.save(network.module.model.state_dict(), f'weights/weights_{epoch+1}.pth')
 
 if __name__ == '__main__':
     main()
